@@ -16,10 +16,10 @@ fi
 scp_code(){
 if [[ $import2_set == "35" ]]
 then
-    $rsynccmd jenkins@192.168.1.35:$code_src/$import3_job/ $code_path/$import2_set/$import3_job/
+    $rsynccmd jenkins@192.168.1.:$code_src/$import3_job/ $code_path/$import2_set/$import3_job/
 elif [[ $import2_set == "88" ]]
 then
-    $rsynccmd jenkins@192.168.1.88:$code_src/$import3_job/ $code_path/$import2_set/$import3_job/
+    $rsynccmd jenkins@192.168.1.:$code_src/$import3_job/ $code_path/$import2_set/$import3_job/
 else
     echo "输入错误，没有匹配的环境"
 fi

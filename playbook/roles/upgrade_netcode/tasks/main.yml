@@ -1,0 +1,12 @@
+- name: Creates {{ job }}-{{ set }}
+  file: path={{ idcm_code_path }}/{{ job }} state=directory
+- name: install {{ item }}{{ job }}-{{ set }}
+  synchronize: "src={{ idcm_code_path }}/{{ set }}/{{ job }}-{{ set }}/ dest={{ idcm_code_path }}/{{ job }}/"
+  when: '"{{ project }}" == "idcm"'
+- name: install {{ item }}{{ job }}-{{ set }}
+  synchronize: "src={{ idcw_code_path }}/{{ set }}/{{ job }}-{{ set }}/ dest={{ idcm_install_path }}/{{ job }}/"
+  when: '"{{ project }}"  == "idcw"'
+#- name: revise group 
+#  shell: cd {{ idcm_code_path }} && chown -R root:root {{ job }}
+- name: restart {{ job }}
+  shell: supervisorctl restart {{ job }}

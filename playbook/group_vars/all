@@ -1,0 +1,11 @@
+---
+
+#idcm net包路径
+idcm_code_path: /data/idcm/versions/4.0.0
+
+#idcw net包路径
+idcw_code_path: /data/idcw/idcw_code
+
+#idcw 安装路径
+idcm_install_path: /data/idcw/versions/3.0.0
+

@@ -1,0 +1,13 @@
+- hosts: '{{ host }}'                                                                                                                    
+  vars:
+    code_path: /data/{{ item }}/versions/4.0.0
+  tasks:
+    - name: Creates {{ job }}
+      file: path={{ code_path }}/{{ job }} state=directory
+   #- name: Creates backup  
+   #  file: path=/data/backup/{{ job }} state=directory
+   #- name: backup  
+   #shell: cd {{ webpath }} && tar -czvf /data/idcm/backup/{{ job }}-web-`date +%Y%m%d%H%M`.tar.gz static index.html
+    
+    - name: install {{ job }}-{{ set }}
+      synchronize: src={{ code_path }}/{{ set }}/{{ job }}-{{ set }}/dist/ dest={{ code_path }}/{{ job }}

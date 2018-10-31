@@ -1,0 +1,15 @@
+- hosts: '{{ host}}'                                                                                          
+  vars:
+    codepath: /data/idcm/versions/4.0.0
+  tasks:
+    #- name: Creates backup
+    #  file: path=/data/backup/{{ job }} state=directory
+    #- name: backup  
+    #  shell: cd {{ pathname }}{{ set }} && tar -czvf /data/backup/{{ job }}/{{ job }}-`date +%Y%m%d%H%M`.tar.gz {{ job }}
+    - name: install {{ job }}
+      synchronize: "src={{ codepath }}/{{ set }}/{{ job }}-{{ set }}/ dest={{ codepath }}/{{ job }}/"
+    - name: update {{ job }} all
+      shell: /bin/bash /data/tools/deploy.sh {{ updatamatch }}
+    - name: restart {{ job }} all
+      shell: supervisorctl reload
+      #shell: supervisorctl restart matchengine.btc.usdt
